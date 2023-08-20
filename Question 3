@@ -1,0 +1,32 @@
+# Function for the differential equation
+def f(x, y):
+    return y - x - 3
+
+# Initial conditions
+x0 = 0
+y0 = 3
+
+# Step size
+h = 0.1
+
+# List of x values
+x_values = [0.1, 0.2, 0.3, 0.4, 0.5]
+
+# Function to perform Improved Euler's method
+def improved_euler_approximation(h, x_target):
+    x = x0
+    y = y0
+    while x < x_target:
+        y_euler = y + h * f(x, y)
+        y += h * (f(x, y) + f(x + h, y_euler)) / 2
+        x += h
+    return y
+
+# Print the header
+print("x Subscript n\tActual, y left parenthesis x Subscript n Baseline right parenthesis\tImproved Euler, y Subscript n")
+
+# Loop through x values
+for x_target in x_values:
+    actual_value = 4 + x_target - 2.71828 ** x_target
+    improved_euler_value = improved_euler_approximation(h, x_target)
+    print(f"{x_target:.4f}\t\t{actual_value:.4f}\t\t\t\t\t\t\t{improved_euler_value:.4f}")
