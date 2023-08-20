@@ -1,0 +1,34 @@
+import math
+
+# Function for the differential equation
+def f(x, y):
+    return y
+
+# Initial conditions
+x0 = 0
+y0 = 10
+
+# List of step sizes
+step_sizes = [0.25, 0.1]
+
+# Function to perform Euler's method
+def euler_approximation(h, x_target):
+    x = x0
+    y = y0
+    while x < x_target:
+        y += h * f(x, y)
+        x += h
+    return y
+
+# Target x value
+x_target = 0.5
+
+# Actual solution
+actual_solution = 10 * math.exp(x_target)
+
+# Calculate and compare the approximations for each step size
+for h in step_sizes:
+    approx_value = euler_approximation(h, x_target)
+    print(f"Euler Approximation (h={h}): {approx_value:.3f}")
+    print(f"Actual Solution at x={x_target}: {actual_solution:.3f}")
+    print()
