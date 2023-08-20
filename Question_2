@@ -1,0 +1,37 @@
+#Wrong: 0.01: 0.8,1.0
+#Wrong: 0.02: 0.2
+#Wrong: 0.008: 0.2,1.2-2
+
+# Function for the differential equation
+def f(x, y):
+    return x + y**0.5
+
+# Initial conditions
+x0 = 0
+y0 = 3
+
+# List of step sizes
+step_sizes = [0.1, 0.02, 0.004, 0.0008]
+
+# List of x values
+x_values = [round(0.2 * i, 1) for i in range(11)]
+
+# Function to perform Euler's method
+def euler_approximation(h, x_target):
+    x = x0
+    y = y0
+    while x < x_target:
+        y += h * f(x, y)
+        x += h
+    return y
+
+# Print the header
+print("x\tEuler Approximation, h=0.1\tEuler Approximation, h=0.02\tEuler Approximation, h=0.004\tEuler Approximation, h=0.0008")
+
+# Loop through x values and step sizes
+for x_target in x_values:
+    approximations = []
+    for h in step_sizes:
+        approx_value = euler_approximation(h, x_target)
+        approximations.append(f"{approx_value:.4f}")
+    print(f"{x_target}\t{approximations[0]}\t\t\t\t{approximations[1]}\t\t\t\t{approximations[2]}\t\t\t\t{approximations[3]}")
