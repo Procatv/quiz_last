@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a grid of x, y values
+x = np.linspace(-5, 5, 21)
+y = np.linspace(-5, 5, 21)
+X, Y = np.meshgrid(x, y)
+
+# Define the derivatives dx/dt and dy/dt
+dx_dt = 1 - Y**2
+dy_dt = X + Y
+
+# Plot the direction field
+plt.quiver(X, Y, dx_dt, dy_dt, color='blue', angles='xy', scale_units='xy', scale=0.5)
+
+# Add critical points
+plt.plot(0, 0, 'go', label='Center at (0, 0)')
+plt.plot(1, 0, 'ro', label='Saddle at (1, 0)')
+plt.plot(-1, 0, 'ro', label='Saddle at (-1, 0)')
+
+# Set plot limits and labels
+plt.xlim(-5, 5)
+plt.ylim(-5, 5)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Phase Portrait')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+
+# Show legend
+plt.legend()
+
+# Show the plot
+plt.show()
