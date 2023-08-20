@@ -1,0 +1,17 @@
+import numpy as np
+
+# Define the matrix A for the system
+A = np.array([[7, 0], [-1, 4]])
+
+# Calculate the eigenvalues of matrix A
+eigenvalues = np.linalg.eigvals(A)
+
+# Check if the eigenvalues are real, distinct, and positive
+if all(eig.real > 0 for eig in eigenvalues) and len(np.unique(eigenvalues)) == 2:
+    classification = "unstable improper node"
+else:
+    classification = "not an unstable improper node"
+
+# Print the classification and eigenvalues
+print("The origin is an", classification)
+print("Eigenvalues:", eigenvalues)
