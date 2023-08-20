@@ -1,0 +1,35 @@
+# Function for the differential equation
+def f(x, y):
+    return y - 6 * x - 5
+
+# Initial conditions
+x0 = 0
+y0 = 10
+
+# Step size
+h = 0.25
+
+# List of x values
+x_values = [0.25, 0.5]
+
+# Function to perform Runge-Kutta method
+def runge_kutta_approximation(h, x_target):
+    x = x0
+    y = y0
+    while x < x_target:
+        k1 = h * f(x, y)
+        k2 = h * f(x + h/2, y + k1/2)
+        k3 = h * f(x + h/2, y + k2/2)
+        k4 = h * f(x + h, y + k3)
+        y += (k1 + 2*k2 + 2*k3 + k4) / 6
+        x += h
+    return y
+
+# Print the header
+print("x\t\t\t\t\t\t\t\t\t\ty with h=0.25\t\t\t\t\tActual y")
+
+# Loop through x values
+for x_target in x_values:
+    actual_value = 11 + 6 * x_target - 2.71828 ** x_target
+    runge_kutta_value = runge_kutta_approximation(h, x_target)
+    print(f"{x_target:.5f}\t\t\t\t\t\t\t\t\t\t{runge_kutta_value:.5f}\t\t\t\t\t\t{actual_value:.5f}")
