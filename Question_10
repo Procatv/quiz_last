@@ -1,0 +1,20 @@
+import numpy as np
+
+# Define the matrix A for the linear system
+A = np.array([[-3, 2], [-13, -5]])
+
+# Calculate the eigenvalues of matrix A
+eigenvalues = np.linalg.eigvals(A)
+
+# Check if the eigenvalues are complex-valued with a negative real part
+if all(np.real(eig_val) < 0 for eig_val in eigenvalues) and any(np.imag(eig_val) != 0 for eig_val in eigenvalues):
+    eigenvalue_classification = "complex-valued with a negative real part"
+    critical_point_classification = "asymptotically stable spiral point"
+else:
+    eigenvalue_classification = "not complex-valued with a negative real part"
+    critical_point_classification = "not an asymptotically stable spiral point"
+
+# Print the conclusions about the eigenvalues and the critical point
+print("The eigenvalue(s) of the associated linear system,", eigenvalues)
+print("are", eigenvalue_classification + ".")
+print("Thus, the critical point (0,0) is", critical_point_classification, "of the linearized system.")
