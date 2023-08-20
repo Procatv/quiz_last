@@ -1,0 +1,17 @@
+import numpy as np
+
+# Define the matrix A for the system
+A = np.array([[4, -2], [10, -8]])
+
+# Calculate the eigenvalues of matrix A
+eigenvalues = np.linalg.eigvals(A)
+
+# Check if the eigenvalues are real and have opposite signs
+if len(eigenvalues) == 2 and np.all(np.sign(eigenvalues[0]) != np.sign(eigenvalues[1])):
+    classification = "unstable saddle point"
+else:
+    classification = "not an unstable saddle point"
+
+# Print the classification and eigenvalues
+print("The origin is an", classification)
+print("Eigenvalues:", eigenvalues)
